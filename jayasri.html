@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tech Fest 2026 - Registration Form</title>
+    <link rel="stylesheet" href="sri.css" />
+  </head>
+
+  <body>
+    <h1>Tech Fest 2026 - Registration Form</h1>
+
+    <form>
+      <fieldset>
+        <legend>Personal Information</legend>
+
+        Name:
+        <input type="text" name="name" required />
+
+        Email:
+        <input type="email" name="email" required />
+
+        Phone Number:
+        <input type="tel" name="phone" required />
+
+        Date of Birth:
+        <input type="date" name="dob" />
+
+        Gender:
+        <br />
+        <input type="radio" name="gender" /> Male
+        <input type="radio" name="gender" /> Female
+        <input type="radio" name="gender" /> Other
+      </fieldset>
+
+      <fieldset>
+        <legend>Event Selection</legend>
+
+        Select Event:
+        <select name="event">
+          <option>Web Development Workshop</option>
+          <option>Coding Contest</option>
+          <option>UI/UX Design Session</option>
+        </select>
+
+        Mode:
+        <br />
+        <input type="checkbox" /> Online <input type="checkbox" /> Offline
+      </fieldset>
+
+      <fieldset>
+        <legend>Additional Details</legend>
+
+        Comments:
+        <textarea rows="4"></textarea>
+
+        <br />
+        <input type="checkbox" required />
+        I confirm that the above details are correct.
+      </fieldset>
+
+      <center>
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+      </center>
+
+      <footer>
+        <p>Contact Email: jayasribala9@gmail.com</p>
+        <p>Help Desk Number: +9444123910</p>
+        <p>© 2026 Web Development Workshop | All Rights Reserved</p>
+      </footer>
+    </form>
+  </body>
+</html>

@@ -1,54 +1,76 @@
-// ====== Mobile Menu Toggle ======
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+// Select the form
+const form = document.querySelector("form");
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent page reload
 
-// ====== Smooth Scrolling ======
-document.querySelectorAll(".nav-links a").forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-      navLinks.classList.remove("active"); // Close menu on mobile after click
+  // Get input fields
+  const name = document.querySelector("input[name='name']");
+  const email = document.querySelector("input[name='email']");
+  const phone = document.querySelector("input[name='phone']");
+  const gender = document.querySelectorAll("input[name='gender']");
+  const mode = document.querySelectorAll(
+    "fieldset:nth-of-type(2) input[type='checkbox']",
+  );
+  const confirmBox = document.querySelector(
+    "fieldset:nth-of-type(3) input[type='checkbox']",
+  );
+
+  let valid = true;
+
+  // Name Validation
+  if (name.value.trim() === "") {
+    alert("Please enter your name");
+    valid = false;
+  }
+
+  // Email Validation
+  if (!email.value.includes("@") || !email.value.includes(".")) {
+    alert("Please enter a valid email address");
+    valid = false;
+  }
+
+  // Phone Validation
+  if (phone.value.length !== 10 || isNaN(phone.value)) {
+    alert("Phone number must be 10 digits");
+    valid = false;
+  }
+
+  // Gender Validation
+  let genderSelected = false;
+  gender.forEach((g) => {
+    if (g.checked) {
+      genderSelected = true;
     }
   });
-});
 
-// ====== Dark Mode Toggle ======
-const darkModeToggle = document.getElementById("darkModeToggle");
-
-darkModeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-
-  // Change icon 🌙 ↔ ☀
-  if (document.body.classList.contains("dark-mode")) {
-    darkModeToggle.textContent = "☀";
-  } else {
-    darkModeToggle.textContent = "🌙";
+  if (!genderSelected) {
+    alert("Please select your gender");
+    valid = false;
   }
-});
 
-// ====== Contact Form Validation ======
-const contactForm = document.getElementById("contactForm");
-const formStatus = document.getElementById("formStatus");
+  // Mode Validation
+  let modeSelected = false;
+  mode.forEach((m) => {
+    if (m.checked) {
+      modeSelected = true;
+    }
+  });
 
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
+  if (!modeSelected) {
+    alert("Please select event mode (Online/Offline)");
+    valid = false;
+  }
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
+  // Confirmation Checkbox
+  if (!confirmBox.checked) {
+    alert("Please confirm that the details are correct");
+    valid = false;
+  }
 
-  if (name && email && message) {
-    formStatus.textContent = "Message sent successfully!";
-    formStatus.style.color = "green";
-    contactForm.reset();
-  } else {
-    formStatus.textContent = "Please fill in all fields.";
-    formStatus.style.color = "red";
+  // If All Valid
+  if (valid) {
+    alert("Registration Successful 🎉");
+    form.reset();
   }
 });
